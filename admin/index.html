@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="greg" class="greg" onsubmit="sendData(); return false;" method="post">
+        <input name="passw" type="password" required>
+        <input type="submit">
+    </form>
+    <script>
+        function sendData() {
+            // Source - https://stackoverflow.com/a
+            // Posted by Amin Jafari, modified by community. See post 'Timeline' for change history
+            // Retrieved 2026-01-19, License - CC BY-SA 4.0
+
+            $('#greg').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: 'http://127.0.0.1:5000/api/signin',
+                    type: 'post',
+                    data:$('#greg').serialize(),
+                    success:function(){
+                        console.log("success")
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
