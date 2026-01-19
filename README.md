@@ -1,2 +1,2 @@
 # swffy
- Flash archive powered by Ruffle
+Flash archive powered by Ruffle
