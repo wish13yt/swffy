@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a .swf!</title>
+</head>
+<body>
+    <h1>Upload a .swf file</h1>
+    <p style="background-color: yellow; color: red;">Notice: Do not upload NSFW content! It will be rejected.</p>
+    <p style="background-color: yellow; color: red;">Notice: The file name being used during upload will be the name of the game on Swffy.</p>
+    <hr>
+    <form method="post" action="http://127.0.0.1:5000/api/upload" enctype="multipart/form-data">
+        <input type="file" name="flash" accept=".swf" required>
+        <input type="submit">
+    </form>
+</body>
+</html>

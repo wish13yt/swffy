@@ -9,7 +9,16 @@ flco.CORS(app)
 def upload_file():
     if request.method == 'POST':
         f = request.files['flash']
-        f.save(f'../db/swf/{secure_filename(f.filename)}.swf')
+        if not secure_filename(f.filename).endswith(".swf"):
+            return "rejected: file type incorrect"
+        with open("db/swf/largestid.txt", "r") as grf:
+            num = int(grf.read())
+        thenumber = num + 1
+        if num == "0":
+            thenumber = 1
+        f.save(f"db/swf/{thenumber}")
+        with open("db/swf/largestid.txt", "w") as grfw:
+            grfw.write(thenumber)
         return "Submitted! An admin will review your file and approve or reject it. You won't be notified if it is accepted or rejected."
 
 @app.route('/api/getswf', methods=['GET', 'POST'])
@@ -20,7 +29,6 @@ def getswf():
 @app.route('/api/approve')
 def approve():
     password = request.form['passw']
-
 @app.route('/api/signin', methods=["POST"])
 def signin():
     pw = request.form['passw']
@@ -37,5 +45,7 @@ def signin():
         print(str(e))
         abort(401, "Password incorrect")
     if executed == True:
-        realpw = "abcdefgh"
+        realpw = "abcdefgh" #what
+        #to get rid of the variable
+        #o
         return "success", 200
