@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play!</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 </head>
 <body onload="loaded()">
     <div id="title"></div>
+    <div id="flash">
+    </div>
     <script>
         function loaded() {
             const urlParams = new URLSearchParams(window.location.search);
             const gid = urlParams.get('gameid');
             title.innerText = "Playing " + gid;
+            let urlp = null;
+            const options = {"swfname": gid}
+            fetch("http://127.0.0.1:5000/api/getswf", {"method": "POST", headers: {'Content-Type': 'application/json'}, "body": JSON.stringify(options)})
+                //.then(response => response.json())
+                .then(res => res.json())
+                .then(data => {
+                    urlp = data.swfname;
+                })
+            urlrpce(urlp)
+        }
+        function urlrpce(urlp) {
+            console.log("urlrpce executed!")
+            //document.getElementById("fem").src = urlp;
+            //document.getElementById("pars").value = urlp;
+            //document.getElementById("fob").data = urlp;
+            flash.innerHTML = '<object width="550" height="400" id="' + urlp + '" type="application/x-shockwave-flash" data="' + urlp + '"><param name="movie" id="swfm" value="' + urlp + '" id="pars" /><param name="wmode" value="opaque" /><param name="quality" value="high" /><embed src="' + urlp + '" id="fem" width="550" height="400" quality="high" wmode="opaque" type="application/x-shockwave-flash" pluginspage="https://ruffle.rs/downloads" /></object>'
         }
     </script>
 </body>

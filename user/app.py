@@ -16,19 +16,23 @@ def upload_file():
         thenumber = num + 1
         if num == "0":
             thenumber = 1
-        f.save(f"db/swf/{thenumber}")
+        f.save(f"db/swf/{thenumber}.swf")
         with open("db/swf/largestid.txt", "w") as grfw:
-            grfw.write(thenumber)
+            grfw.write(str(thenumber))
         return "Submitted! An admin will review your file and approve or reject it. You won't be notified if it is accepted or rejected."
 
-@app.route('/api/getswf', methods=['GET', 'POST'])
+@app.route('/api/getswf', methods=['POST'])
 def getswf():
-    swfname = request.form['swfname']
-    return send_from_directory('../db/swf/', swfname + ".swf", as_attachment=True)
+    jsonswf = request.get_json()
+    swfname = jsonswf['swfname']
+    print(swfname)
+    print('../user/db/swf/' + swfname + ".swf")
+    return {"swfpath": f"../user/db/swf/{swfname}.swf"}
 
 @app.route('/api/approve')
 def approve():
     password = request.form['passw']
+
 @app.route('/api/signin', methods=["POST"])
 def signin():
     pw = request.form['passw']
