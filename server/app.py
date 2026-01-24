@@ -2,6 +2,7 @@ from flask import Flask, request, send_from_directory, abort
 from werkzeug.utils import secure_filename
 import scrypt
 import flask_cors as flco
+import os
 try:
     from torf import Torrent # to disable turning swf into torrent files pip uninstall torf or dont install it at all
     # it wont work without seeders or running seed.py forever and ever tho and there arent any trackers included in the file
@@ -11,6 +12,10 @@ except:
 
 app = Flask(__name__)
 flco.CORS(app)
+if not os.path.exists("db/swf/largestid.txt"):
+    with open("db/swf/largestid.txt", "w") as f:
+        f.write("0")
+        f.close()
 @app.route('/api/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
