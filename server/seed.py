@@ -17,7 +17,6 @@ while True:
     for item in tpath:
         torrent_file = item
         save_path = f"{swfpp}/"
-        print(save_path)
         info = lt.torrent_info(f"{tpp}/{torrent_file}")
         params = {
             'ti': info,
