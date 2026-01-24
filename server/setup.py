@@ -8,7 +8,7 @@ encrypted = scrypt.encrypt(pw, pw)
 with open("adminpw.bin", "wb") as f:
     f.write(encrypted)
     print("password written and encrypted! have fun")
-ftm = ["db", "db/swf", "db/torrents"]
+ftm = ["db", "db/swf", "db/torrents", "db/swfnames", "db/lid"]
 for item in ftm:
     if not os.path.exists(item):
         os.mkdir(item)
