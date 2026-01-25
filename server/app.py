@@ -7,6 +7,8 @@ try:
     from torf import Torrent # to disable turning swf into torrent files pip uninstall torf or dont install it at all
     # it wont work without seeders or running seed.py and there arent any trackers included in the file
     # if youd like to you can tho
+    # NOTICE: even legal torrents can be illegal in some places! please make sure you won't get arrested for it, but if you do get arrested for some reason, we are not liable
+    # this is your warning! I am not liable
 except:
     print("the torf module was not found! swf files uploaded will not turn into torrent files")
 
