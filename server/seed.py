@@ -1,4 +1,6 @@
 # all seeding code taken from https://woteq.com/how-to-build-a-torrent-seeder-using-python/
+# NOTICE: even legal torrents can be illegal in some places! please make sure you won't get arrested for it, but if you do get arrested for some reason, we are not liable
+# this is your warning! I am not liable
 import libtorrent as lt # pip install python-libtorrent
 import time
 import os
